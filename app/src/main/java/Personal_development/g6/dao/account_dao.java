@@ -11,8 +11,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 
-import poly.edu.duan1_lampngpk02586.DBHelper;
-import poly.edu.duan1_lampngpk02586.model.account_model;
+import Personal_development.g6.DBHelper;
+import Personal_development.g6.model.account_model;
 
 public class account_dao {
     private static final String role_table = "role_table";
@@ -70,6 +70,7 @@ public class account_dao {
         return list;
     }
 
+    //Lấy danh sách người dùng
     @SuppressLint("Range")
     public ArrayList<account_model> getListUser() {
         ArrayList<account_model> list = new ArrayList<account_model>();
@@ -90,6 +91,7 @@ public class account_dao {
         return list;
     }
 
+    //Lấy thông tin người dùng
     @SuppressLint("Range")
     public ArrayList<account_model> getUser(String username) {
         ArrayList<account_model> list = new ArrayList<account_model>();
@@ -109,6 +111,7 @@ public class account_dao {
         return list;
     }
 
+    //Tạo người dùng
     public boolean add(account_model account_model) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -130,6 +133,7 @@ public class account_dao {
         }
     }
 
+    //Đăng nhập
     public boolean login(String user, String pass) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + account_table + " WHERE " + id_ac + " = ? AND " + password_ac + " = ?", new String[]{user, pass});
@@ -148,6 +152,7 @@ public class account_dao {
         }
     }
 
+    //Cập nhập mật khẩu người dùng
     public void reset_password(String user, String pass) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -155,6 +160,7 @@ public class account_dao {
         db.update(account_table, contentValues, id_ac + " = ?", new String[]{user});
     }
 
+    //Lấy id người dùng
     @SuppressLint("Range")
     public int getIdRole(String role_selected) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -167,6 +173,7 @@ public class account_dao {
         }
     }
 
+    //Lấy tên đầu người dùng
     @SuppressLint("Range")
     public String getFirstname(String fn) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -179,6 +186,7 @@ public class account_dao {
         }
     }
 
+    //Lấy tên giữa người dùng
     @SuppressLint("Range")
     public String getMiddle(String fn) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -191,6 +199,7 @@ public class account_dao {
         }
     }
 
+    //Lấy tên cuối người dùng
     @SuppressLint("Range")
     public String getLastname(String fn) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -203,6 +212,7 @@ public class account_dao {
         }
     }
 
+    //Lấy số điện thoại người dùng
     @SuppressLint("Range")
     public String getPhone(String fn) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -215,6 +225,7 @@ public class account_dao {
         }
     }
 
+    //Lấy địa chỉ người dùng
     @SuppressLint("Range")
     public String getAddress(String fn) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -227,6 +238,7 @@ public class account_dao {
         }
     }
 
+    //Lấy avatar người dùng
     @SuppressLint("Range")
     public byte[] getAvatar(String fn) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -239,6 +251,7 @@ public class account_dao {
         }
     }
 
+    //Cập nhập quyền người dùng
     public void update_role(String user, int role) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -246,6 +259,7 @@ public class account_dao {
         db.update(account_table, contentValues, id_ac + " = ?", new String[]{user});
     }
 
+    //Cập nhập avatar cho người có avatar
     public void update_profile_HaveAvatar(String fn, String mn, String ln, String phone, String address, byte[] avatar, String user) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -258,6 +272,7 @@ public class account_dao {
         db.update(account_table, contentValues, id_ac + " = ?", new String[]{user});
     }
 
+    //Cập nhập avatar cho người không có avatar
     public void update_profile_NoAvatar(String fn, String mn, String ln, String phone, String address, String user) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -270,6 +285,7 @@ public class account_dao {
         db.update(account_table, contentValues, id_ac + " = ?", new String[]{user});
     }
 
+    //Kiểm tra số điện thoại người dùng
     public boolean check_User_Phone(String user, String phone) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + account_table + " WHERE " + id_ac + " = ? AND " + phone_ac + " = ?", new String[]{user, phone});
@@ -284,6 +300,7 @@ public class account_dao {
         }
     }
 
+    //Kiểm tra trùng lặp tài khoản
     public boolean isDuplicate(String username, String phone) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + account_table + " WHERE " + id_ac + " = ? AND " + phone_ac + " = ?", new String[]{username, phone});

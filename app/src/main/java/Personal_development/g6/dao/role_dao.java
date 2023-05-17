@@ -7,8 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 
-import poly.edu.duan1_lampngpk02586.DBHelper;
-import poly.edu.duan1_lampngpk02586.model.role_model;
+import Personal_development.g6.DBHelper;
+import Personal_development.g6.model.role_model;
 
 public class role_dao {
     // Table role
@@ -23,6 +23,7 @@ public class role_dao {
         dbHelper = new DBHelper(context);
     }
 
+    //Lấy danh sách phân quyền
     @SuppressLint("Range")
     public ArrayList<role_model> getList(String... selectArgs) {
         ArrayList<role_model> list = new ArrayList<>();
@@ -38,7 +39,7 @@ public class role_dao {
         return list;
     }
 
-    // new String[]{id}
+    //Xem chi tiết quyền
     @SuppressLint("Range")
     public role_model getDetail(String... selectArgs) {
         String queryString = "SELECT * FROM " + role_table + " where " + id_role + " = ?";
@@ -50,6 +51,7 @@ public class role_dao {
         return role;
     }
 
+    //Lấy tên quyền
     @SuppressLint("Range")
     public String getNameRole(int id) {
         db = dbHelper.getReadableDatabase();
@@ -62,6 +64,7 @@ public class role_dao {
         }
     }
 
+    //Lấy id quyền
     @SuppressLint("Range")
     public int getIdRole(String role_selected) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();

@@ -8,8 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 
-import poly.edu.duan1_lampngpk02586.DBHelper;
-import poly.edu.duan1_lampngpk02586.model.drinks_model;
+import Personal_development.g6.DBHelper;
+import Personal_development.g6.model.drinks_model;
 
 public class drinks_dao {
     // Table drinks
@@ -29,6 +29,7 @@ public class drinks_dao {
         dbHelper = new DBHelper(context);
     }
 
+    //Lấy danh sách sản phẩm
     @SuppressLint("Range")
     public ArrayList<drinks_model> getList(String... selectArgs) {
         ArrayList<drinks_model> list = new ArrayList<>();
@@ -49,6 +50,7 @@ public class drinks_dao {
         return list;
     }
 
+    //Thống kê các sản phẩm bán chạy
     @SuppressLint("Range")
     public ArrayList<drinks_model> getTop10() {
         ArrayList<drinks_model> list = new ArrayList<>();
@@ -68,7 +70,7 @@ public class drinks_dao {
         }
         return list;
     }
-
+    //Tìm kiếm sản phẩm theo tên hoặc danh mục
     @SuppressLint("Range")
     public ArrayList<drinks_model> search(String text) {
         ArrayList<drinks_model> list = new ArrayList<>();
@@ -88,7 +90,7 @@ public class drinks_dao {
         }
         return list;
     }
-
+    //Kiểm tra trùng lặp sản phẩm
     //check duplicate category
     public boolean isDuplicate(String name) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -100,7 +102,7 @@ public class drinks_dao {
             return true;
         }
     }
-
+    //Lấy ảnh hình sản phẩm theo id
     @SuppressLint("Range")
     public byte[] getImage(int id) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -113,6 +115,7 @@ public class drinks_dao {
         }
     }
 
+    //Lấy tên sản phẩm theo id
     @SuppressLint("Range")
     public String getName(int id) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -125,6 +128,7 @@ public class drinks_dao {
         }
     }
 
+    //Lấy giá sản phẩm theo id
     @SuppressLint("Range")
     public double getPrice(int id) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -137,7 +141,7 @@ public class drinks_dao {
         }
     }
 
-
+    //Lấy tổng só lượng sản phẩm bản được từ lịch sử đặt hàng
     @SuppressLint("Range")
     public int getSumQuantity(int id) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -150,6 +154,7 @@ public class drinks_dao {
         }
     }
 
+    //Tạo sản phẩm
     public boolean create(drinks_model drinks) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         try {
@@ -167,7 +172,7 @@ public class drinks_dao {
         }
     }
 
-
+    //hàm tạo các dữ liệu mẫu
     public boolean tempt(int id_drink, int cat_id, String name, byte[] image, String des, Double price) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         try {
@@ -186,7 +191,7 @@ public class drinks_dao {
         }
     }
 
-
+    //Cập nhập sản phẩm
     public boolean update(drinks_model drinks) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         try {
@@ -205,6 +210,7 @@ public class drinks_dao {
         }
     }
 
+    //Xoá sản phẩm
     public boolean delete(int id) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         try {

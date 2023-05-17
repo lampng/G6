@@ -8,8 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 
-import poly.edu.duan1_lampngpk02586.DBHelper;
-import poly.edu.duan1_lampngpk02586.model.cart_model;
+import Personal_development.g6.DBHelper;
+import Personal_development.g6.model.cart_model;
 
 public class cart_dao {
     // Table cart

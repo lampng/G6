@@ -8,8 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 
-import poly.edu.duan1_lampngpk02586.DBHelper;
-import poly.edu.duan1_lampngpk02586.model.cat_model;
+import Personal_development.g6.DBHelper;
+import Personal_development.g6.model.cat_model;
 
 public class cat_dao {
     // Table category_drink
@@ -40,7 +40,7 @@ public class cat_dao {
         return list;
     }
 
-    //check duplicate category
+    //Kiểm tra trùng lặp danh mục
     public boolean isDuplicate(String name) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + category_table + " WHERE " + name_cat + " = ?", new String[]{name});
@@ -52,6 +52,7 @@ public class cat_dao {
         }
     }
 
+    //Lấy id danh mục
     @SuppressLint("Range")
     public int getId(String name) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -64,6 +65,7 @@ public class cat_dao {
         }
     }
 
+    //Tạo danh mục
     public boolean create(cat_model cat) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         try {
@@ -77,7 +79,7 @@ public class cat_dao {
             return false;
         }
     }
-
+    //Hàm tạo dữ liệu mẫu
     public boolean tempt(int id, String name, byte[] image) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         try {
@@ -92,7 +94,7 @@ public class cat_dao {
             return false;
         }
     }
-
+    //Cập nhập danh mục
     public boolean update(cat_model cat) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         try {
@@ -108,6 +110,7 @@ public class cat_dao {
         }
     }
 
+    //Xoá danh mục
     public boolean delete(int id) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         try {
@@ -119,6 +122,7 @@ public class cat_dao {
         }
     }
 
+    //Lấy tên danh mục
     public ArrayList<String> getName() {
         ArrayList<String> list = new ArrayList<String>();
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -134,6 +138,7 @@ public class cat_dao {
         return list;
     }
 
+    //Lấy tên danh mục bằng id danh mục
     @SuppressLint("Range")
     public String getNamePosition(int id) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();

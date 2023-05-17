@@ -8,8 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 
-import poly.edu.duan1_lampngpk02586.DBHelper;
-import poly.edu.duan1_lampngpk02586.model.order_model;
+import Personal_development.g6.DBHelper;
+import Personal_development.g6.model.order_model;
 
 public class order_dao {
 
@@ -32,7 +32,7 @@ public class order_dao {
         dbHelper = new DBHelper(context);
     }
 
-    //get list cho người dùng
+    //Lấy danh sách đặt hàng cho người dùng
     @SuppressLint("Range")
     public ArrayList<order_model> getListCustomer(String customer) {
         ArrayList<order_model> list = new ArrayList<>();
@@ -50,7 +50,7 @@ public class order_dao {
         return list;
     }
 
-    //get list cho staff
+    //Lấy danh sách đặt hàng cho nhân viên và quản trị
     @SuppressLint("Range")
     public ArrayList<order_model> getListStaff() {
         ArrayList<order_model> list = new ArrayList<>();
@@ -68,6 +68,7 @@ public class order_dao {
         return list;
     }
 
+    //Cập nhập trạng thái đặt hàng
     public boolean setStatus(String staff, int id) {
         db = dbHelper.getWritableDatabase();
         try {
@@ -82,6 +83,7 @@ public class order_dao {
         }
     }
 
+    //Tạo danh sách lịch sử đặt hàng
     public boolean create(order_model order) {
         db = dbHelper.getWritableDatabase();
         try {
@@ -97,6 +99,7 @@ public class order_dao {
         }
     }
 
+    //Lấy id order bởi id người dùng
     @SuppressLint("Range")
     public int getIdOrder(String customerID, int number) {
         db = dbHelper.getReadableDatabase();
@@ -109,6 +112,7 @@ public class order_dao {
         }
     }
 
+    //Xoá id order
     public boolean deleteByOrderID(int order_id) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         try {
@@ -120,6 +124,7 @@ public class order_dao {
         }
     }
 
+    //Thống kê doanh thu
     public int getRevenue(String start, String end) {
         start = start.replace("/", "");
         end = end.replace("/", "");
